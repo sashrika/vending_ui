@@ -8,6 +8,8 @@ import { LoginComponent } from './login/login.component';
 import { UserService } from './user.service';
 import { HomeComponent } from './home/home.component';
 import {FormsModule} from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http'
+// import { InterceptorModule } from "./interceptor.module";
 
 const appRoutes:Routes = [
   {
@@ -28,7 +30,8 @@ const appRoutes:Routes = [
   imports: [
     BrowserModule,
     RouterModule.forRoot(appRoutes),
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [UserService],
   bootstrap: [AppComponent]
