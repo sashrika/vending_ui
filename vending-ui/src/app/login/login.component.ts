@@ -18,9 +18,8 @@ export class LoginComponent implements OnInit {
     let username = e.target.form[0].value;
     let password = e.target.form[1].value;
     if(username == 'f88' && password == 'f88'){
-      this.router.navigate(['configure-body']);
+      this.router.navigate(['home']);
       this._userService.setUserLoggedIn();
-      alert(this._userService.getUserLoggedIn());
     }
   }
 

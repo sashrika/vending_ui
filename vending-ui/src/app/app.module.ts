@@ -6,8 +6,13 @@ import {RouterModule,Routes} from '@angular/router'
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { UserService } from './user.service';
+import { HomeComponent } from './home/home.component';
+import {FormsModule} from '@angular/forms';
 
 const appRoutes:Routes = [
+  {
+    path:'home',component:HomeComponent
+  },
   {
     path:'',component:LoginComponent,pathMatch:'full'
   }
@@ -17,11 +22,13 @@ const appRoutes:Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    FormsModule
   ],
   providers: [UserService],
   bootstrap: [AppComponent]
