@@ -26,7 +26,7 @@
               <ng-template #content>This storage is not available</ng-template>
               <ng-template #elseBlock>This storage is available</ng-template>
               <br>
-              <button *ngIf="!storage.isOccupied" type="button" class="btn btn-success" style="margin-top:10px;">
+              <button (click)="reserveStorage(storage.storageId)" *ngIf="!storage.isOccupied" type="button" class="btn btn-success" style="margin-top:10px;">
                 Reserve
               </button>
             </div>

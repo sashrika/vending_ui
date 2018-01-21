@@ -13,6 +13,7 @@ import { Storage } from "../models/storage";
 export class HomeComponent implements OnInit {
 
   public apiBaseUrl:string = "http://139.59.4.88/api";
+  // public apiBaseUrl:string = "http://localhost:8000";
   storages:Storage[];
   vending_1:Spiral[];
   vending_2:Space[];
@@ -45,12 +46,23 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  fetchStorages() {
-    return new Promise(function (resolve, reject) {
-      this.http.get(this.apiBaseUrl + "/storages").subscribe((data: Storage[]) => {
-        resolve(data);
-      });
+  updateStorage(storageId:number,storageToBeUpdated:Storage) {
+    this.http.post(this.apiBaseUrl + "/storage/"+storageId,JSON.stringify(storageToBeUpdated),{responseType: 'text'}).subscribe((data: any) => {
     });
   }
+
+  reserveStorage(storageId:number){
+    let storageToBeUpdated:Storage  = this.locateStorage(storageId);
+    storageToBeUpdated.isOccupied=true;
+    this.updateStorage(storageId,storageToBeUpdated);
+  }
+
+  locateStorage(storageId:number):Storage {
+    let storageToBeUpdated:Storage = this.storages.find((element)=> {
+      return element.storageId == storageId;
+    });
+    return storageToBeUpdated;
+  }
+
 
 }
