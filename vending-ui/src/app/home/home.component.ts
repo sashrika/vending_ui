@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { VendingMetaData } from "../vending_metadata";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from "rxjs/Observable";
+import { Spiral } from "../models/spiral";
+import { Space } from "../models/space";
+import { Storage } from "../models/storage";
 
 @Component({
   selector: 'app-home',
@@ -10,32 +12,45 @@ import { Observable } from "rxjs/Observable";
 })
 export class HomeComponent implements OnInit {
 
-  public vending_1:VendingMetaData;
-  public vending_2:VendingMetaData;
   public apiBaseUrl:string = "http://139.59.4.88/api";
+  storages:Storage[];
+  vending_1:Spiral[];
+  vending_2:Space[];
 
 
   constructor(private http: HttpClient) {
   }
 
   ngOnInit() {
-    this.vending_1 = {
-      max: 7,
-      remaining: 4
-    };
-    this.vending_2 = {
-      max: 7,
-      remaining: 3
-    };
     this.getVending1Data();
+    this.getVending2Data();
+    this.getStorageData();
   }
 
-  getVending1Data (): Observable<string[]> {
-    this.http.get(this.apiBaseUrl+"/test").subscribe((data:any)=>{
-      console.log(data);
-    })
-    
-    return;
+  getVending1Data(){
+    this.http.get(this.apiBaseUrl + "/vending/1").subscribe((data: Spiral[]) => {
+      this.vending_1 = data;
+    });
+  }
+
+  getVending2Data() {
+    this.http.get(this.apiBaseUrl + "/vending/2").subscribe((data: Space[]) => {
+      this.vending_2 = data;
+    });
+  }
+
+  getStorageData() {
+    this.http.get(this.apiBaseUrl + "/storages").subscribe((data: Storage[]) => {
+      this.storages = data;
+    });
+  }
+
+  fetchStorages() {
+    return new Promise(function (resolve, reject) {
+      this.http.get(this.apiBaseUrl + "/storages").subscribe((data: Storage[]) => {
+        resolve(data);
+      });
+    });
   }
 
 }

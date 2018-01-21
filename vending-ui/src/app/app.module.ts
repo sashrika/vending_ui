@@ -8,8 +8,8 @@ import { LoginComponent } from './login/login.component';
 import { UserService } from './user.service';
 import { HomeComponent } from './home/home.component';
 import {FormsModule} from '@angular/forms';
-import {HttpClientModule} from '@angular/common/http'
-// import { InterceptorModule } from "./interceptor.module";
+import {HttpClientModule} from '@angular/common/http';
+import { SpaceAvailabilityPipe } from './space-availability.pipe'
 
 const appRoutes:Routes = [
   {
@@ -25,7 +25,8 @@ const appRoutes:Routes = [
   declarations: [
     AppComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    SpaceAvailabilityPipe
   ],
   imports: [
     BrowserModule,

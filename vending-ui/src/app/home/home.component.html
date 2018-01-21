@@ -2,24 +2,38 @@
 	<div class="row">
     <div class="col top-space">
         <div class="row">
-            <div class="floating-box">
-                Vending Machine 1
-                <p>{{vending_1.remaining}} is remaining out of {{vending_1.max}}</p>
+            <div class="floating center">
+              <h6 class="card-subtitle mb-2 text-muted">Vending Machine 1</h6>         
+              <ul>
+                <li *ngFor="let spiral of vending_1">
+                  On spiral {{ spiral.spiralId }} , {{spiral.remaining}} is remaining on {{spiral.max}}
+                </li>
+              </ul>
             </div>
-            <div class="floating-box">
-              Vending Machine 2
-              <p>{{vending_2.remaining}} is remaining out of {{vending_2.max}}</p>
+            <div class="floating center">
+                <h6 class="card-subtitle mb-2 text-muted">Vending Machine 2</h6>   
+              <ul>
+                <li *ngFor="let space of vending_2">
+                  Space {{ space.spaceId }} , is {{space.isOccupied | spaceAvailability}}
+                </li>
+              </ul>
             </div>
         </div>
         <div class="row">
-            <div class="floating-box">Storage 1</div>
-            <div class="floating-box">Storage 2</div>
-            <div class="floating-box">Storage 3</div>
-            <div class="floating-box">Storage 4</div>
+            <div class="floating-box" *ngFor="let storage of storages">
+              <p>Storage {{storage.storageId}}</p>              
+              <div *ngIf="storage.isOccupied;then content else elseBlock"></div>
+              <ng-template #content>This storage is not available</ng-template>
+              <ng-template #elseBlock>This storage is available</ng-template>
+              <br>
+              <button *ngIf="!storage.isOccupied" type="button" class="btn btn-success" style="margin-top:10px;">
+                Reserve
+              </button>
+            </div>
         </div>
     </div>
-    <div class="col top-space">
+    <!-- <div class="col top-space">
       sas
-    </div>
+    </div> -->
 	</div>
 </div>
