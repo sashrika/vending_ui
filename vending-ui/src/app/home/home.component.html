@@ -1,4 +1,7 @@
 <div class = "container">
+    <div class="row" style="padding-top:35px;">
+      <h2>Welcome {{userName}}</h2>
+    </div>
 	<div class="row">
     <div class="col top-space">
         <div class="row">
@@ -13,7 +16,7 @@
             <div class="floating center">
                 <h6 class="card-subtitle mb-2 text-muted">Vending Machine 2</h6>   
               <ul>
-                <li *ngFor="let space of vending_2">
+                <li *ngFor="let space of vending_2" [ngStyle]="{'color': space.isOccupied == true ? 'red' : '' }">
                   Space {{ space.spaceId }} , is {{space.isOccupied | spaceAvailability}}
                 </li>
               </ul>
@@ -21,10 +24,11 @@
         </div>
         <div class="row">
             <div class="floating-box" *ngFor="let storage of storages">
-              <p>Storage {{storage.storageId}}</p>              
+              <h6 class="card-subtitle mb-2 text-muted" style="padding-top:15px;">Storage {{storage.storageId}}</h6> 
               <div *ngIf="storage.isOccupied;then content else elseBlock"></div>
-              <ng-template #content>This storage is not available</ng-template>
+              <ng-template  #content> <span class="redText">This storage is not available</span></ng-template>
               <ng-template #elseBlock>This storage is available</ng-template>
+              <p *ngIf="storage.canTempControl" style="color:green;">temperature : {{storage.temperature}} &deg;C</p>
               <br>
               <button (click)="reserveStorage(storage.storageId)" *ngIf="!storage.isOccupied" type="button" class="btn btn-success" style="margin-top:10px;">
                 Reserve
@@ -32,8 +36,5 @@
             </div>
         </div>
     </div>
-    <!-- <div class="col top-space">
-      sas
-    </div> -->
 	</div>
 </div>

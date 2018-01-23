@@ -5,11 +5,11 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class SpaceAvailabilityPipe implements PipeTransform {
 
-  transform(availability: boolean, args?: any): string {
-    if(availability){
-      return "available";
-    }else{
+  transform(isOccupied: boolean, args?: any): string {
+    if(isOccupied){
       return "not available";
+    }else{
+      return "available";
     }
   }
 

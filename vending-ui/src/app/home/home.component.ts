@@ -4,6 +4,7 @@ import { Observable } from "rxjs/Observable";
 import { Spiral } from "../models/spiral";
 import { Space } from "../models/space";
 import { Storage } from "../models/storage";
+import { UserService } from "../user.service";
 
 @Component({
   selector: 'app-home',
@@ -17,15 +18,17 @@ export class HomeComponent implements OnInit {
   storages:Storage[];
   vending_1:Spiral[];
   vending_2:Space[];
+  userName:string;
 
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private _userService:UserService) {
   }
 
   ngOnInit() {
     this.getVending1Data();
     this.getVending2Data();
     this.getStorageData();
+    this.userName = this._userService.getUserName();
   }
 
   getVending1Data(){

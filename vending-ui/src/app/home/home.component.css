@@ -20,7 +20,7 @@
 }
 
 .top-space{
-    margin-top: 80px;
+    margin-top: 50px;
 }
 
 .center {
@@ -30,3 +30,10 @@
     padding: 10px;
 }
 
+h1, h2, h3, h4, h5, h6 {
+    text-align: center;
+}
+
+.redText{
+    color:red;
+}

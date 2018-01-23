@@ -17,9 +17,14 @@ export class LoginComponent implements OnInit {
   login(e){
     let username = e.target.form[0].value;
     let password = e.target.form[1].value;
-    if(username == 'f88' && password == 'f88'){
+    if(username == 'prabhash' && password == 'f88'){
       this.router.navigate(['home']);
       this._userService.setUserLoggedIn();
+      this._userService.setUserName("Prabhash Keerthikumara")
+    }else if(username == 'sahan' && password == 'f88'){
+      this.router.navigate(['home']);
+      this._userService.setUserLoggedIn();
+      this._userService.setUserName("Sahan Chathuranga");
     }
   }
 
